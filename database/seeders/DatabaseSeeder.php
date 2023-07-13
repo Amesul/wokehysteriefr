@@ -30,7 +30,7 @@ class DatabaseSeeder extends Seeder
             'team' => 'creators',
         ]);
         Post::factory(35)->create();
-        Tag::factory(12)->create();
+        Tag::factory(11)->create();
         Episode::factory(11)->create();
 //        Question::factory()->create([
 //            'question' => 'Comment cette émission a-t-elle été crée ?',

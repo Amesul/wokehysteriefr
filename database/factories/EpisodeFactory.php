@@ -18,8 +18,10 @@ class EpisodeFactory extends Factory
     public function definition(): array
     {
         return [
+            'number' => fake()->unique()->numberBetween(1, 11),
             'title' => fake()->sentence,
             'guest' => fake()->name,
+            'link' => 'https://example.com',
             'published' => fake()->boolean,
         ];
     }

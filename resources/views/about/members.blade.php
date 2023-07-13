@@ -1,4 +1,4 @@
-<x-app-layout>
+<x-dashboard-layout>
     <x-slot name="title">Membres</x-slot>
     <x-title>Membres</x-title>
 
@@ -7,4 +7,4 @@
         <x-members-section :users="$users" team="writers" title="Chroniqueur·euses et journalistes"/>
         <x-members-section :users="$users" team="crew" title="Équipe artistique et technique"/>
     </main>
-</x-app-layout>
+</x-dashboard-layout>

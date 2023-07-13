@@ -8,7 +8,7 @@
             <x-slot:image>
                 <img src="{{ url(substr_replace($user->profile_picture, 'storage', 0, 6)) }}"
                      class="my-auto mb-2 ml-10 w-20 rounded-full"
-                     alt="Photo de profil de {{ $post->author->username }}">
+                     alt="Photo de profil de {{ $user->username }}">
             </x-slot:image>
         @endif
     </x-title>

@@ -23,7 +23,7 @@
                         @if(isset($user->profile_picture) )
                             <img src="{{ url(substr_replace($user->profile_picture, 'storage', 0, 6)) }}"
                                  class="my-2 my-auto h-12 rounded-full"
-                                 alt="Photo de profil de {{ $post->author->username }}">
+                                 alt="Photo de profil de {{ $user->username }}">
                         @endif
                     </td>
                     <td class="px-6">{{ $user->username }}</td>

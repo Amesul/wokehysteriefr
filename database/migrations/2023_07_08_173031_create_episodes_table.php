@@ -13,8 +13,10 @@ return new class extends Migration
     {
         Schema::create('episodes', function (Blueprint $table) {
             $table->id();
-            $table->text('title');
+            $table->integer('number')->unique();
+            $table->string('title');
             $table->text('guest');
+            $table->string('link');
             $table->boolean('published')->default(0);
             $table->timestamps();
         });
