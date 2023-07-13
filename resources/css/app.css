@@ -1,0 +1,43 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@font-face {
+    font-family: "Gotham";
+    src: url("/public/fonts/gotham-book.otf");
+    font-weight: normal;
+}
+
+@font-face {
+    font-family: "Gotham";
+    src: url("/public/fonts/gotham-black.otf");
+    font-weight: bold;
+}
+
+:root {
+    --parchment: #F0E9D3;
+    --sage: #C3B888;
+    --maize: #EDC253;
+    --bright-lavender: #AD8CFF;
+    --blue-violet: #7154BA;
+    --jacarta: #3B266E;
+}
+
+article.member > p,
+.excerpt > p,
+article.post-body > p {
+    margin-top: 14px;
+}
+
+.answer > p {
+    margin-top: 8px;
+}
+
+article.member > p > a {
+    text-decoration: underline;
+}
+
+
+article.member > p > a:hover {
+    color: var(--jacarta);
+}
