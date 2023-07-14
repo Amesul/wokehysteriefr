@@ -50,7 +50,7 @@ class ProfileController extends Controller
 
         $request->user()->update($attributes);
 
-        return redirect('/dashboard/profile')->with('success', 'Profil modifié !');
+        return redirect('/dashboard/profile')->with('success', 'Profil modifié');
     }
 
     /**

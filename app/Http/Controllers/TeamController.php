@@ -19,6 +19,6 @@ class TeamController extends Controller
         $user->team = $request->get('team');
         $user->save();
 
-        return back()->with('success', 'Membre ajouté !');
+        return back()->with('success', 'Membre ajouté');
     }
 }

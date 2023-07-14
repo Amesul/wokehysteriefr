@@ -33,6 +33,6 @@ class PasswordController extends Controller
 
         $user->password = Hash::make($request->new_password);
         $user->save();
-        return back()->with('success', "Mot de passe modifié !");
+        return back()->with('success', "Mot de passe modifié");
     }
 }
