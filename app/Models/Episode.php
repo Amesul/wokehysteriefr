@@ -9,9 +9,11 @@ class Episode extends Model
 {
     use HasFactory;
 
+    protected $guarded = [];
+
     public static function findLatest()
     {
-        $episodes = Episode::all()->sortByDesc('id')->where("published");
+        $episodes = Episode::all()->sortByDesc('id');
         return $episodes->first();
     }
 }

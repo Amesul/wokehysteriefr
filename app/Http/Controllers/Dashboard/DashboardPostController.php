@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Dashboard;
 use App\Http\Controllers\Controller;
 use App\Models\Post;
 use App\Models\Tag;
+use App\Providers\Purifier;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
@@ -27,17 +28,18 @@ class DashboardPostController extends Controller
 
     public function store(Request $request): RedirectResponse
     {
-        if (!isset($request->tags)) {
-            return back()->with('danger', 'Le post doit être associé à un tag au minimum');
-        }
+        $attributes = $request->validate([
+            'title' => ['required', 'string'],
+            'excerpt' => ['required', 'string', 'max:250'],
+            'body' => 'required',
+            'tags' => 'required'
+        ]);
 
         $tags = Tag::find($request->tags);
+        $attributes['excerpt'] = Purifier::cleanFull($request['excerpt']);
+        $attributes['body'] = Purifier::clean($request['body']);
 
-        Post::create(array_merge($request->validate([
-                'title' => ['required', 'string'],
-                'excerpt' => ['required', 'string', 'max:250'],
-                'body' => 'required',
-            ]), [
+        Post::create(array_merge($attributes, [
                 'user_id' => request()->user()->id,
                 'slug' => Str::slug(request()->title, '-'),
                 'thumbnail' => request()->file('thumbnail')?->store('thumbnails')

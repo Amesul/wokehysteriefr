@@ -44,9 +44,10 @@
         </section>
 
         <section class="text-3xl mt-80 w-175  font-bold text-center mx-auto">
-            <h2 class="font-luckiest-guy text-5xl text-blue-violet">Dernier épisode</h2>
-            <p>Épisode #{{ $episode->id }}<br>
-                "{{ $episode->title }}", avec {{ $episode->guest }}, disponible sur
+            <h2 class="font-luckiest-guy text-5xl text-blue-violet">
+                <a href="{{ $episode?->link }}" target="_blank">Épisode #{{ $episode?->number }}</a>
+            </h2>
+            <p>"{{ $episode?->title }}", avec {{ $episode?->guest }}, disponible sur
                 toutes les plateformes de podcast !</p>
         </section>
     </main>

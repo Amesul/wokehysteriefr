@@ -15,8 +15,8 @@
 
     <script src="https://kit.fontawesome.com/d27584343e.js" crossorigin="anonymous"></script>
     <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.12.3/dist/cdn.min.js"></script>
-    <script src="maintain-scroll.js"></script>
 
+    <x-head.maintain-scroll/>
     <x-head.tinymce-config/>
 
     {{ $slot }}

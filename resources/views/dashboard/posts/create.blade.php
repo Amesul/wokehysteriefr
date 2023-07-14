@@ -9,7 +9,7 @@
         <form action="/blog/posts" method="post">
             @csrf
             <main class="mb-10 grid grid-cols-3 gap-10">
-                {{-- Display name --}}
+                {{-- Title --}}
                 <div class="col-span-3">
                     <x-forms.input-label for="title" :value="__('Titre')"/>
                     <x-forms.form-input id="title" name="title" type="text" class="mt-1 block w-full"
@@ -52,7 +52,7 @@
                     <x-forms.input-error class="mt-2" :messages="$errors->get('body')"/>
                 </div>
             </main>
-            <x-forms.primary-button class="ml-auto">Enregistrer</x-forms.primary-button>
+            <x-forms.primary-button class="ml-auto">Créer</x-forms.primary-button>
         </form>
     </section>
 </x-dashboard-layout>

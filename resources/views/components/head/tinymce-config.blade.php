@@ -29,4 +29,14 @@
         menubar: false,
         toolbar: 'undo redo | bold italic | link code | wordcount',
     });
+
+    tinymce.init({
+        selector: 'textarea#answer',
+        resize: false,
+        height: 300,
+        plugins: 'wordcount code link',
+        link_default_target: '_blank',
+        menubar: false,
+        toolbar: 'italic | link code | wordcount',
+    });
 </script>

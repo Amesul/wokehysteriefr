@@ -91,10 +91,10 @@
             <main class="mb-10 grid grid-cols-2 gap-x-16 gap-y-10">
                 {{-- Current password --}}
                 <div class="">
-                    <x-forms.input-label for="password" :value="__('Ancien mot de passe')"/>
-                    <x-forms.form-input id="password" name="password" type="password" class="mt-1 block w-full"
-                                        required autocomplete="password"/>
-                    <x-forms.input-error class="mt-2" :messages="$errors->get('password')"/>
+                    <x-forms.input-label for="current_password" :value="__('Ancien mot de passe')"/>
+                    <x-forms.form-input id="current_password" name="current_password" type="current_password" class="mt-1 block w-full"
+                                        required autocomplete="current_password"/>
+                    <x-forms.input-error class="mt-2" :messages="$errors->get('current_password')"/>
                 </div>
 
                 {{-- Spacing --}}

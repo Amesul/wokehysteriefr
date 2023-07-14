@@ -1,13 +1,14 @@
 <x-dashboard-layout>
     <x-slot name="title">
-        Écrire
+        Modifier
     </x-slot>
 
-    <x-title>Écrire</x-title>
+    <x-title>Modifier</x-title>
 
     <section class="mx-auto mt-4 max-w-5xl rounded-xl bg-white p-8 shadow-xl">
         <form action="/blog/posts" method="post">
             @csrf
+            @method('PATCH')
             <main class="mb-10 grid grid-cols-3 gap-10">
                 {{-- Display name --}}
                 <div class="col-span-2">

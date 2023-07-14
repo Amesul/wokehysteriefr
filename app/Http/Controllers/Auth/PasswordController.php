@@ -5,11 +5,7 @@ namespace App\Http\Controllers\Auth;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\ProfileUpdateRequest;
 use Illuminate\Http\RedirectResponse;
-use Illuminate\Http\Request;
-
-use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
-use Illuminate\Validation\Rules\Password;
 
 class PasswordController extends Controller
 {
@@ -20,13 +16,13 @@ class PasswordController extends Controller
     {
 
         $this->validate($request, [
-            'password' => 'required|string',
+            'current_password' => 'required|string',
             'new_password' => 'required|confirmed|min:8|string'
         ]);
         $user = auth()->user();
 
         // The password don't match
-        if (!Hash::check($request->get('password'), $user->password)) {
+        if (!Hash::check($request->get('current_password'), $user->password)) {
             return back()->with('danger', "Le mot de passe actuel est invalide");
         }
 

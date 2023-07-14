@@ -24,7 +24,7 @@ return new class extends Migration {
             $table->boolean('writer')->default(0);
             $table->string('team')->nullable();
             $table->rememberToken();
-            $table->timestamp('email_verified_at');
+            $table->timestamp('email_verified_at')->nullable();
             $table->timestamps();
         });
     }

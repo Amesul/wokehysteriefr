@@ -3,12 +3,10 @@
 namespace App\Http\Controllers\Dashboard;
 
 use App\Http\Controllers\Controller;
-use App\Http\Requests\ProfileUpdateRequest;
 use App\Providers\Purifier;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\View\View;
@@ -54,26 +52,6 @@ class ProfileController extends Controller
 
         return redirect('/dashboard/profile')->with('success', 'Profil modifié !');
     }
-
-//    public function update(ProfileUpdateRequest $request): RedirectResponse
-//    {
-//
-//        $request->user()->fill($request->validate([
-//            'profile_picture' => ['nullable', 'file'],
-//            'display_name' => ['required', 'string', 'max:255'],
-//            'username' => ['required', 'string', 'max:255', 'unique:users,username,' . auth()->user()->id],
-//            'email' => ['required', 'string', 'email', 'max:255', 'unique:users,email,' . auth()->user()->id],
-//            'biography' => ['nullable', 'string', 'max:2500'],
-//            'social' => ['nullable', 'url'],
-//        ]));
-//
-//        if ($request->user()->isDirty('email')) {
-//            $request->user()->email_verified_at = null;
-//        }
-//
-//        $request->user()->save();
-//        return redirect('/dashboard/profile')->with('success', 'Profil modifié !');
-//    }
 
     /**
      * Delete the user's account.

@@ -3,10 +3,11 @@
 use App\Http\Controllers\Auth\PasswordController;
 use App\Http\Controllers\Dashboard\DashboardController;
 use App\Http\Controllers\Dashboard\DashboardPostController;
+use App\Http\Controllers\Dashboard\EpisodeController;
 use App\Http\Controllers\Dashboard\ProfileController;
+use App\Http\Controllers\Dashboard\QuestionController;
 use App\Http\Controllers\Dashboard\UsersController;
 use App\Http\Controllers\PostController;
-use App\Http\Controllers\QuestionController;
 use App\Http\Controllers\TeamController;
 use App\Models\Episode;
 use App\Models\User;
@@ -37,7 +38,6 @@ Route::patch('/users', [TeamController::class, 'update'])->middleware('auth.admi
 
 Route::get('/about/faq', [QuestionController::class, 'index']);
 Route::get('/about/legal', fn() => view('about.legal',));
-
 Route::get('/contact', fn() => view('contact',));
 
 Route::get('/dashboard/posts', [DashboardPostController::class, 'index'])->middleware('auth.writer');
@@ -46,11 +46,20 @@ Route::post('/blog/posts', [DashboardPostController::class, 'store'])->middlewar
 Route::get('/dashboard/posts/{post:slug}', [DashboardPostController::class, 'edit'])->middleware('auth.writer');
 Route::delete('/blog/posts/{post:id}', [DashboardPostController::class, 'destroy'])->middleware('auth.writer');
 
-Route::get('/dashboard/edit', [DashboardController::class, 'index'])->middleware('auth.admin');
+Route::middleware('auth.admin')->group(function () {
+    Route::get('/dashboard/edit', [DashboardController::class, 'index']);
+    Route::post('/dashboard/edit/episode', [EpisodeController::class, 'store']);
+    Route::get('/dashboard/edit/faq/create', [QuestionController::class, 'create']);
+    Route::get('/dashboard/edit/faq/{question:id}', [QuestionController::class, 'edit']);
+    Route::post('/about/faq', [QuestionController::class, 'store']);
+    Route::patch('/about/faq/{question:id}', [QuestionController::class, 'update']);
+    Route::delete('/about/faq/{question:id}', [QuestionController::class, 'destroy']);
 
-Route::get('/dashboard/users', [UsersController::class, 'index'])->middleware('auth.admin');
-Route::patch('/users/{user:id}', [UsersController::class, 'update'])->middleware('auth.admin');
-Route::delete('/users/{user:id}', [UsersController::class, 'destroy'])->middleware('auth.admin');
+    Route::get('/dashboard/users', [UsersController::class, 'index']);
+    Route::patch('/users/{user:id}/admin', [UsersController::class, 'update']);
+    Route::patch('/users/{user:id}/writer', [UsersController::class, 'update']);
+    Route::delete('/users/{user:id}', [UsersController::class, 'destroy']);
+});
 
 Route::middleware('auth')->group(function () {
     Route::get('/dashboard/profile', [ProfileController::class, 'edit']);

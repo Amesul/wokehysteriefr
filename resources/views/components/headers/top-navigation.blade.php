@@ -27,19 +27,19 @@
                 Profil
             </x-headers.dashboard-link>
             <x-headers.dashboard-link href="/dashboard/posts"
-                                      :enable="auth()->user()->writer"
+                                      :enable="auth()->user()?->writer"
                                       :active="request()->path() === 'dashboard/posts'">
                 Posts
             </x-headers.dashboard-link>
             <x-headers.dashboard-link href="/dashboard/edit"
-                                      :enable="auth()->user()->admin"
+                                      :enable="auth()->user()?->admin"
                                       :active="request()->path() === 'dashboard/edit'">
-                Edit
+                Édition
             </x-headers.dashboard-link>
             <x-headers.dashboard-link href="/dashboard/users"
-                                      :enable="auth()->user()->admin"
+                                      :enable="auth()->user()?->admin"
                                       :active="request()->path() === 'dashboard/users'">
-                Users
+                Utilisateur·ices
             </x-headers.dashboard-link>
         </nav>
     @endif

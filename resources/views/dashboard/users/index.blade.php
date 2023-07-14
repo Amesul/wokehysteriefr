@@ -28,48 +28,58 @@
                     </td>
                     <td class="px-6">{{ $user->username }}</td>
                     <td class="px-6">
-                        <form method="post" action="/users/{{ $user->id }}">
+                        <form method="post" action="/users/{{ $user->id }}/admin">
                             @method('PATCH')
                             @csrf
-                            <input type="hidden" id="admin" name="admin" value="{{ $user->admin ? 0 : true }}">
-                            @if($user->id === auth()->user()->id || (auth()->user()->username !== 'amesul' && $user->admin))
+                            @if($user->id === auth()->user()->id || (auth()->user()->username !== 'amesul'))
                                 <input onchange="this.form.submit()"
                                        class="mx-auto block h-4 w-4 cursor-not-allowed rounded accent-blue-violet checked:bg-blue-violet"
                                        type="checkbox"
                                        disabled
-                                       name="admin_checkbox" {{ $user->admin ? 'checked' : '' }}>
+                                    {{ $user->admin ? 'checked' : '' }}>
                             @else
+                                <input type="hidden" id="admin" name="admin" value="{{ $user->admin ? 0 : true }}">
                                 <input onchange="this.form.submit()"
                                        class="mx-auto block h-4 w-4 rounded accent-blue-violet checked:bg-blue-violet"
                                        type="checkbox"
-                                       name="admin_checkbox" {{ $user->admin ? 'checked' : '' }}>
+                                    {{ $user->admin ? 'checked' : '' }}>
                             @endif
                         </form>
                     </td>
                     <td class="px-6">
-                        <form method="post" action="/users/{{ $user->id }}">
+                        <form method="post" action="/users/{{ $user->id }}/writer">
                             @method('PATCH')
                             @csrf
-                            <input type="hidden" id="writer" name="writer" value="{{ $user->writer ? 0 : true }}">
-                            <input onchange="this.form.submit()"
-                                   class="mx-auto block h-4 w-4 rounded accent-blue-violet checked:bg-blue-violet"
-                                   type="checkbox"
-                                   name="writer_checkbox" {{ $user->writer ? 'checked' : '' }}>
+                            @if($user->id === auth()->user()->id)
+                                <input onchange="this.form.submit()"
+                                       class="mx-auto block h-4 w-4 cursor-not-allowed rounded accent-blue-violet checked:bg-blue-violet"
+                                       type="checkbox"
+                                       disabled
+                                    {{ $user->writer ? 'checked' : '' }}>
+                            @else
+                                <input type="hidden" id="writer" name="writer" value="{{ $user->writer ? 0 : true }}">
+                                <input onchange="this.form.submit()"
+                                       class="mx-auto block h-4 w-4 rounded accent-blue-violet checked:bg-blue-violet"
+                                       type="checkbox"
+                                    {{ $user->writer ? 'checked' : '' }}>
+                        @endif
                         </form>
                     </td>
                     <td class="px-6 text-end">
-                        @if($user->id !== auth()->user()->id)
+                        @if($user->id !== auth()->user()->id && auth()->user()->username === 'amesul')
                             <form method="post" action="/users/{{ $user->id }}">
                                 @method('DELETE')
                                 @csrf
                                 <button class="text-red-500 transition-all duration-300 hover:text-red-700">Supprimer
                                 </button>
                             </form>
+                        @else
+                            <button class="text-red-800 transition-all duration-300 cursor-not-allowed">Supprimer
+                            </button>
                         @endif
                     </td>
                 </tr>
             @endforeach
-            {{--            {{ $users->links() }}--}}
             </tbody>
         </table>
     </section>
