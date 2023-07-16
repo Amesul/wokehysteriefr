@@ -8,11 +8,11 @@
 ])
 
 <section {{ $attributes->class(['my-14 w-full border-t py-3 border-jacarta']) }}>
-    <h2 class="text-center text-3xl font-luckiest-guy">{{$title}}</h2>
+    <h2 class="text-center text-3xl sm:text-4xl font-luckiest-guy">{{$title}}</h2>
     @foreach($users as $member)
         @if($member->team === $team)
-            <article class="mt-7 text-lg member">
-                <h3 class="text-3xl font-bold">
+            <article class="mt-7 member">
+                <h3 class="text-2xl sm:text-3xl font-bold">
                     <a href="{{ $member->social }}"
                        target="_blank"
                        class="hover:text-jacarta">

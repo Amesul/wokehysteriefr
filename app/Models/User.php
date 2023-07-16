@@ -33,7 +33,8 @@ class User extends Authenticatable
         'password',
         'admin',
         'writer',
-        'team'
+        'team',
+        'job'
     ];
 
     public function posts()

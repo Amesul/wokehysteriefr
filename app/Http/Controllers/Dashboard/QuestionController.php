@@ -9,19 +9,19 @@ use Illuminate\Http\Request;
 
 class QuestionController extends Controller
 {
-    public function index()
+    public function index(): \Illuminate\Contracts\View\Factory|\Illuminate\Foundation\Application|\Illuminate\Contracts\View\View|\Illuminate\Contracts\Foundation\Application
     {
         return view('about.faq', [
             'questions' => Question::all(),
         ]);
     }
 
-    public function create()
+    public function create(): \Illuminate\Contracts\View\Factory|\Illuminate\Foundation\Application|\Illuminate\Contracts\View\View|\Illuminate\Contracts\Foundation\Application
     {
         return view('dashboard.edit.faq.create');
     }
 
-    public function store(Request $request)
+    public function store(Request $request): \Illuminate\Foundation\Application|\Illuminate\Routing\Redirector|\Illuminate\Http\RedirectResponse|\Illuminate\Contracts\Foundation\Application
     {
         $attributes = $request->validate([
             'question' => ['required', 'string'],
@@ -35,7 +35,7 @@ class QuestionController extends Controller
         return redirect('/dashboard/edit')->with('success', 'Question ajoutée');
     }
 
-    public function edit(Question $question)
+    public function edit(Question $question): \Illuminate\Contracts\View\Factory|\Illuminate\Foundation\Application|\Illuminate\Contracts\View\View|\Illuminate\Contracts\Foundation\Application
     {
         return view('dashboard.edit.faq.edit', [
             'question' => $question,
@@ -43,7 +43,7 @@ class QuestionController extends Controller
 
     }
 
-    public function update(Question $question, Request $request)
+    public function update(Question $question, Request $request): \Illuminate\Foundation\Application|\Illuminate\Routing\Redirector|\Illuminate\Http\RedirectResponse|\Illuminate\Contracts\Foundation\Application
     {
         $attributes = $request->validate([
             'question' => ['required', 'string'],
@@ -57,7 +57,7 @@ class QuestionController extends Controller
         return redirect('/dashboard/edit')->with('success', 'Question modifiée');
     }
 
-    public function destroy(Question $question)
+    public function destroy(Question $question): \Illuminate\Http\RedirectResponse
     {
         $question->delete();
         return back()->with('danger', 'Question supprimée');

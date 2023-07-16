@@ -1,6 +1,6 @@
 @props([
     'value',
-    'required' =>true
+    'required' => false
     ])
 
 <label {{ $attributes->merge(['class' => 'block font-bold text-md text-gray-700']) }}>

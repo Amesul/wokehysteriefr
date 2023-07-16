@@ -1,17 +1,17 @@
 <x-dashboard-layout>
     <x-slot name="title">
-        Modifier
+        Écrire
     </x-slot>
 
-    <x-title>Modifier</x-title>
+    <x-title>Écrire</x-title>
 
-    <section class="mx-auto mt-4 max-w-5xl rounded-xl bg-white p-8 shadow-xl">
-        <form action="/blog/posts" method="post">
+    <section class="mx-auto mt-8 rounded-xl bg-white px-6 py-10 shadow-xl sm:mt-12 lg:mt-16 md:p-12">
+        <form action="/blog/posts/{{ $post->id }}" method="post">
             @csrf
             @method('PATCH')
             <main class="mb-10 grid grid-cols-3 gap-10">
-                {{-- Display name --}}
-                <div class="col-span-2">
+                {{-- Title --}}
+                <div class="col-span-3">
                     <x-forms.input-label for="title" :value="__('Titre')"/>
                     <x-forms.form-input id="title" name="title" type="text" class="mt-1 block w-full"
                                         :value="old('title', $post->title)" required/>
@@ -21,15 +21,18 @@
                 {{-- Tags --}}
                 <div x-data="{ open: false }">
                     <div @click="open = !open"
-                         class="mt-8 flex h-10 w-full rounded-md border border-gray-300 font-bold shadow-sm focus:border-blue-violet focus:ring-blue-violet">
-                        <p class="block my-auto ml-2 ">Tags</p>
+                         class="mt-2 flex h-10 w-40 rounded-md border border-gray-300 font-bold shadow-sm focus:border-blue-violet focus:ring-blue-violet">
+                        <p class="my-auto ml-2 block">Tags</p>
                         <i class="my-auto mr-2 ml-auto block fa-solid fa-chevron-down"></i>
                     </div>
                     <ul x-show="open" @click.outside="open = false"
                         class="absolute z-40 mt-2 w-fit overflow-x-hidden overflow-y-scroll rounded-md bg-slate-200 py-4 pr-8 pl-4 shadow-lg focus:ring-blue-violet">
                         @foreach($tags as $tag)
-                            <li class="block flex items-baseline">
-                                <input type="checkbox" name="tags[{{ $tag->id }}]" value="{{ $tag->id }}"
+                            <li class="flex items-baseline">
+                                <input type="checkbox"
+                                       name="tags[{{ $tag->id }}]"
+                                       value="{{ $tag->id }}"
+                                       {{ $post->tags->contains($tag) ? 'checked' : '' }}
                                        class="mr-2 rounded">{{ucwords($tag->name)}}
                             </li>
                         @endforeach
@@ -49,7 +52,7 @@
                 <div class="col-span-3 cursor-text">
                     <x-forms.input-label for="body" class="mb-2" :value="__('Post')"/>
                     <x-forms.form-textarea id="body" name="body"
-                                           autofocus>{!!old('body', $post->body )!!}</x-forms.form-textarea>
+                                           autofocus>{!!old('body', $post->body)!!}</x-forms.form-textarea>
                     <x-forms.input-error class="mt-2" :messages="$errors->get('body')"/>
                 </div>
             </main>

@@ -1,4 +1,3 @@
-import defaultTheme from 'tailwindcss/defaultTheme';
 import forms from '@tailwindcss/forms';
 
 /** @type {import('tailwindcss').Config} */
@@ -14,9 +13,16 @@ export default {
 
     theme: {
         extend: {
-            minHeight: (theme) => ({
-                ...theme('spacing'),
-            }),
+            screens: {
+                'xs' : '340px',
+            },
+            minHeight: {
+                '135': '540px',
+                '175': '700px',
+            },
+            maxWidth: {
+                'xxs': "16rem",
+            },
             keyframes: {
                 expand: {
                     '0%': {transform: 'scaleX(0)'},

@@ -5,7 +5,7 @@
 
     <x-title>Écrire</x-title>
 
-    <section class="mx-auto mt-4 max-w-5xl rounded-xl bg-white p-8 shadow-xl">
+    <section class="mx-auto mt-8 rounded-xl bg-white px-6 py-10 shadow-xl sm:mt-12 lg:mt-16 md:p-12">
         <form action="/blog/posts" method="post">
             @csrf
             <main class="mb-10 grid grid-cols-3 gap-10">
@@ -20,8 +20,8 @@
                 {{-- Tags --}}
                 <div x-data="{ open: false }">
                     <div @click="open = !open"
-                         class="mt-2 flex h-10 w-full rounded-md border border-gray-300 font-bold shadow-sm focus:border-blue-violet focus:ring-blue-violet">
-                        <p class="block my-auto ml-2">Tags</p>
+                         class="mt-2 flex h-10 w-40 rounded-md border border-gray-300 font-bold shadow-sm focus:border-blue-violet focus:ring-blue-violet">
+                        <p class="my-auto ml-2 block">Tags</p>
                         <i class="my-auto mr-2 ml-auto block fa-solid fa-chevron-down"></i>
                     </div>
                     <ul x-show="open" @click.outside="open = false"

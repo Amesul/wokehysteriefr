@@ -5,7 +5,7 @@
 
     <x-title>Modifier</x-title>
 
-    <section class="mx-auto mt-4 max-w-5xl rounded-xl bg-white p-8 shadow-xl">
+    <section class="mx-auto mt-8 rounded-xl bg-white px-6 py-10 shadow-xl sm:mt-12 lg:mt-16 md:p-12">
         <form action="/about/faq/{{ $question->id }}" method="post">
             @csrf
             @method('PATCH')

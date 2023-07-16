@@ -1,9 +1,10 @@
 <!doctype html>
 <html lang="fr">
 <x-head.head title="Mentions légales"/>
-<body class="min-h-screen w-full bg-parchment font-gotham grid place-content-center">
-<main class="mx-auto max-w-5xl grid gap-10">
-    <a href="{{ url()->previous() }}" class="font-gotham font-bold text-lg"><i class="fa-solid fa-circle-chevron-left mr-2"></i> Retour</a>
+<body class="grid min-h-screen w-full place-content-center bg-parchment font-gotham">
+<main class="mx-auto grid gap-10">
+    <a href="{{ url()->previous() }}" class="text-lg font-bold font-gotham"><i
+            class="mr-2 fa-solid fa-circle-chevron-left"></i> Retour</a>
     <section>
         <h1 class="text-5xl font-luckiest-guy text-blue-violet">MENTIONS LÉGALES</h1>
         <p>Conformément aux dispositions de la loi n° 2004-575 du 21 juin 2004 pour la confiance en l'économie

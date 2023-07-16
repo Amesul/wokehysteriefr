@@ -1,54 +1,65 @@
-<x-app-layout>
-    <x-slot:title>
-        Accueil
-    </x-slot:title>
+<!DOCTYPE html>
+<html lang="fr">
+<x-head.head title="Accueil"/>
+<body class="w-full text-3xl text-neutral-900 antialiased bg-parchment font-gotham">
 
-    <main class="max-w-5xl mx-auto">
-        <section class="flex justify-between">
-            <div class="mt-48 flex group">
-                <h1 class="text-7xl leading-tight tracking-wider my-3  font-bold">
-                    Le talk-show<br>
-                    <span class="text-blue-violet group-hover:text-jacarta transition-all duration-300">queer</span> et
-                    <span
-                        class="text-blue-violet group-hover:text-jacarta transition-all duration-300">militant</span><br>
-                    de Twitch !
-                </h1>
-            </div>
-        </section>
-        <section class="text-3xl mt-80  font-bold w-175 ml-auto">
-            <p class="mb-10">Émission mensuelle diffusée en direct sur Twitch, La Woke hystérie est née d’une envie de
-                faire bouger les choses. Nombre de streameur·euses se sont lancé·es dans l’aventure et ont créé leurs
-                émissions ces dernières années, sur tous les sujets possibles. Mais nous avons fait deux constats.
-                Aujourd’hui, sur Twitch, il y a une demande croissante pour un contenu queer et féministe, mais la scène
-                du talk-show est majoritairement occupée par des hommes cisgenres.</p>
-            <p class="mb-10">Chaque mois, nous recevrons un·e invité·e pour parler avec nous d’un thème donné. Ces deux
-                heures de discussion(s) seront l’occasion de réfléchir toustes ensemble pour comprendre le militantisme,
-                la culture et l’histoire LGBT+ !</p>
-            <p>Plus d'infos dans À propos...</p>
-        </section>
+@if (Session::has('info'))
+    <x-notification type="info">{{ Session::get('info') }}</x-notification>
+@elseif(Session::has('danger'))
+    <x-notification type="danger">{{ Session::get('danger') }}</x-notification>
+@elseif(Session::has('success'))
+    <x-notification type="success">{{ Session::get('success') }}</x-notification>
+@endif
 
-        <section class="grid grid-cols-2 gap-10 text-3xl mt-80  font-bold">
-            <article class="w-135">
-                <h2 class="font-luckiest-guy text-5xl text-blue-violet">Infos</h2>
-                <p class="mb-10">Prochain épisode le vendredi 21 juillet, à 20h, sur la chaîne de Desentredeux.</p>
-                <p>Suivez toute l'actualité de l'émission sur Twitter, les extraits et coulisses sur
-                    Instagram et les replays intégraux sur YouTube !</p>
-            </article>
-            <article class="w-135">
-                <a href="/blog/posts/"><h2
-                        class="font-luckiest-guy text-5xl text-blue-violet transition-all duration-300 hover:text-jacarta">
-                        Blog</h2></a>
-                <p>La Woke Hystérie version lecture. Réflexions, actus et articles concoctés par la team
-                    Woke...</p>
-            </article>
-        </section>
+<header>
+    <x-headers.top-navigation/>
+    <x-headers.header/>
+</header>
+<main
+    class="mx-auto mt-24 text-lg min-h-175 max-w-xxs xs:max-w-xs sm:max-w-xl sm:text-xl md:text-2xl lg:text-3xl md:max-w-3xl lg:max-w-4xl xl:max-w-7xl">
+    <section class="flex justify-between">
+        <div class="mx-auto mt-14 flex lg:mt-24 xl:mt-48 group lg:mx-0">
+            <h1 class="my-3 text-center text-4xl font-bold leading-tight tracking-wider sm:text-5xl md:text-6xl lg:text-7xl lg:text-start">
+                Le talk-show<br>
+                <span class="transition-all duration-300 text-blue-violet group-hover:text-jacarta">queer</span> et
+                <span
+                    class="transition-all duration-300 text-blue-violet group-hover:text-jacarta">militant</span><br>
+                de Twitch !
+            </h1>
+        </div>
+    </section>
+    <section class="mt-20 ml-auto font-bold lg:mt-60 xl:mt-80 lg:w-175">
+        <p class="mb-10">Émission mensuelle diffusée en direct sur Twitch, La Woke hystérie est née d’une envie de
+            faire bouger les choses. Nombre de streameur·euses se sont lancé·es dans l’aventure et ont créé leurs
+            émissions ces dernières années, sur tous les sujets possibles. Mais nous avons fait deux constats.
+            Aujourd’hui, sur Twitch, il y a une demande croissante pour un contenu queer et féministe, mais la scène
+            du talk-show est majoritairement occupée par des hommes cisgenres.</p>
+        <p class="mb-10">Chaque mois, nous recevrons un·e invité·e pour parler avec nous d’un thème donné. Ces deux
+            heures de discussion(s) seront l’occasion de réfléchir toustes ensemble pour comprendre le militantisme,
+            la culture et l’histoire LGBT+ !</p>
+        <p>Plus d'infos dans À propos...</p>
+    </section>
 
-        <section class="text-3xl mt-80 w-175  font-bold text-center mx-auto">
-            <h2 class="font-luckiest-guy text-5xl text-blue-violet">
-                <a href="{{ $episode?->link }}" target="_blank">Épisode #{{ $episode?->number }}</a>
-            </h2>
-            <p>"{{ $episode?->title }}", avec {{ $episode?->guest }}, disponible sur
-                toutes les plateformes de podcast !</p>
-        </section>
-    </main>
-</x-app-layout>
+    <section class="mt-20 hidden justify-between font-bold lg:mt-60 xl:mt-80 xl:flex">
+        <x-home.infos/>
+        <x-home.blog-infos/>
+    </section>
+
+    <section class="mt-20 flex max-w-6xl flex-col gap-16 font-bold lg:mt-60 xl:mt-80 xl:hidden">
+        <x-home.infos/>
+        <x-home.blog-infos class="ml-auto"/>
+    </section>
+
+    <section class="mx-auto mt-20 text-center font-bold lg:mt-60 xl:mt-80 lg:w-175">
+        <h2 class="text-3xl transition-all duration-300 md:text-4xl lg:text-5xl font-luckiest-guy text-blue-violet hover:text-jacarta">
+            <a href="{{ $episode?->link }}" target="_blank">Épisode #{{ $episode?->number }}</a>
+        </h2>
+        <p>"{{ $episode?->title }}", avec {{ $episode?->guest }}, disponible sur
+            toutes les plateformes de podcast !</p>
+    </section>
+</main>
+
+<x-footer.footer/>
+
+</body>
+</html>

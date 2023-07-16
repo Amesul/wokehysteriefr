@@ -7,7 +7,7 @@
         @endif
     </x-title>
 
-    <main class="mx-auto my-4 grid max-w-5xl grid-cols-2 gap-4">
+    <main class="mx-auto my-4 grid md:grid-cols-2 gap-4">
         @foreach($posts as $post)
             <x-posts.post-card :post="$post"/>
         @endforeach

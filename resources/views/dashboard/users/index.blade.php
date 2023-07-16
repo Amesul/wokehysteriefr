@@ -5,8 +5,8 @@
 
     <x-title>Users</x-title>
 
-    <section class="mx-auto mt-10 max-w-5xl rounded-xl bg-white shadow-xl">
-        <table class="w-full table-auto overflow-hidden rounded-xl text-xl">
+    <section class="mx-auto mt-8 rounded-xl bg-white px-6 py-10 shadow-xl sm:mt-12 lg:mt-16 md:p-12">
+        <table class="w-full table-auto overflow-hidden rounded-xl ">
             <thead class="h-16 bg-neutral-300 font-bold">
             <tr>
                 <th class="px-6"></th>

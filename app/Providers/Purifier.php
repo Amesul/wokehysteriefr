@@ -6,7 +6,7 @@ use HTMLPurifier, HTMLPurifier_Config;
 
 class Purifier
 {
-    public static function clean($user_input)
+    public static function clean($user_input): string
     {
         require base_path('vendor/ezyang/htmlpurifier/library/') . 'HTMLPurifier.auto.php';
         $config = HTMLPurifier_Config::createDefault();
@@ -18,7 +18,7 @@ class Purifier
         return $purifier->purify($user_input);
     }
 
-    public static function cleanFull($user_input)
+    public static function cleanFull($user_input): string
     {
         require base_path('vendor/ezyang/htmlpurifier/library/') . 'HTMLPurifier.auto.php';
         $config = HTMLPurifier_Config::createDefault();

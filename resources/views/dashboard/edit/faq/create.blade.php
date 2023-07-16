@@ -5,7 +5,7 @@
 
     <x-title>FAQ</x-title>
 
-    <section class="mx-auto mt-4 max-w-5xl rounded-xl bg-white p-8 shadow-xl">
+    <section class="mx-auto mt-4 lg:mt-16 rounded-xl bg-white px-6 py-10 md:p-12 shadow-xl">
         <form action="/about/faq" method="post">
             @csrf
             <main class="mb-10 grid gap-10">

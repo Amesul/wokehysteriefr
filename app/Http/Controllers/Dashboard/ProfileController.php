@@ -35,6 +35,7 @@ class ProfileController extends Controller
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users,email,' . auth()->user()->id],
             'biography' => ['nullable', 'string', 'max:2500'],
             'social' => ['nullable', 'url'],
+            'job' => ['nullable', 'string'],
         ]);
 
         if ($attributes['profile_picture'] ?? false) {

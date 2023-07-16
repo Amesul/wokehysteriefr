@@ -37,14 +37,17 @@ Route::get('/about/members', fn() => view('about.members', [
 Route::patch('/users', [TeamController::class, 'update'])->middleware('auth.admin');
 
 Route::get('/about/faq', [QuestionController::class, 'index']);
-Route::get('/about/legal', fn() => view('about.legal',));
-Route::get('/contact', fn() => view('contact',));
+Route::get('/about/legal', fn() => view('about.legal'));
+Route::get('/contact', fn() => view('contact'));
 
-Route::get('/dashboard/posts', [DashboardPostController::class, 'index'])->middleware('auth.writer');
-Route::get('/dashboard/posts/create', [DashboardPostController::class, 'create'])->middleware('auth.writer');
-Route::post('/blog/posts', [DashboardPostController::class, 'store'])->middleware('auth.writer');
-Route::get('/dashboard/posts/{post:slug}', [DashboardPostController::class, 'edit'])->middleware('auth.writer');
-Route::delete('/blog/posts/{post:id}', [DashboardPostController::class, 'destroy'])->middleware('auth.writer');
+Route::middleware('auth.writer')->group(function () {
+    Route::get('/dashboard/posts', [DashboardPostController::class, 'index']);
+    Route::get('/dashboard/posts/create', [DashboardPostController::class, 'create']);
+    Route::post('/blog/posts', [DashboardPostController::class, 'store']);
+    Route::get('/dashboard/posts/{post:slug}', [DashboardPostController::class, 'edit']);
+    Route::patch('/blog/posts/{post:id}', [DashboardPostController::class, 'update']);
+    Route::delete('/blog/posts/{post:id}', [DashboardPostController::class, 'destroy']);
+});
 
 Route::middleware('auth.admin')->group(function () {
     Route::get('/dashboard/edit', [DashboardController::class, 'index']);
